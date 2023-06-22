@@ -24,24 +24,23 @@ function createArticle(data) {
                 <header class="article-header">
                     <div class="top-info">
                         <div class="company-name">${job.company}</div>
-                        <div class="new">
                         ${job.new ? `
-                            <div>
-                                <span>new</span>
-                            </div>
+                        
+                        <div class="new">
+                            <span>new!</span>
+                        </div>
                         ` 
                         : ''
                         }
-                        </div>
-                        <div class="featured">
                         ${job.featured ? `
-                            <div>
-                                <span>featured</span>
-                            </div>
+                        
+                        <div class="featured active">
+                            <span>featured</span>
+                        </div>
+                        
                         ` 
                         : ''
                         }
-                        </div>
                     </div>
                     <div class="middle-info">
                         <div class="position">${job.position}</div>
