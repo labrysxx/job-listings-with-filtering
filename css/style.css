@@ -157,11 +157,19 @@ main article {
 }
 
 .filter {
+    display: flex;
+    align-items: center;
     position: absolute;
     top: 105px;
     left: 50%; 
     transform: translateX(-50%); 
-    width: 200px; 
+    width: 76%; 
     height: 100px;
     background-color: white;
+}
+
+.toolFiltered {
+    margin-left: 16px;
+    background-color: var(--light-aqua);
+    padding: 10px;
 }

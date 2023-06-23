@@ -1,10 +1,12 @@
 const main = document.getElementById('content')
+let jobs
 let filters = Array()
 
 window.addEventListener('DOMContentLoaded', () => {
     fetch('./data.json')
         .then(response => {return response.json()})
         .then(data => {
+            jobs = data
             createArticle(data)
             filterTool()
         })
@@ -119,6 +121,8 @@ function upTools(tool) {
             // atualizar o localStorage
             updateLocalStorage();
 
+            showFilteredJobs(); // atualizar a exibição dos jobs
+
             return;
         }
     }
@@ -132,7 +136,7 @@ function upTools(tool) {
     toolDiv.dataset.check = toolClicked;
 
     filter.insertAdjacentElement('beforeend', toolDiv);
-    filteredJobs();
+    showFilteredJobs(); // atualizar a exibição dos jobs
 }
 
 
@@ -142,7 +146,33 @@ function filteredJobs() {
 
     // atualiza o array filters com as tools filtradas
     filters = Array.from(filteredTools).map(filteredTool => filteredTool.dataset.check);
-    updateLocalStorage()
+    updateLocalStorage();
+
+    showFilteredJobs(); // chama a função para exibir os jobs filtrados
 }
+
+function showFilteredJobs() {
+    const articles = document.querySelectorAll('article');
+
+    articles.forEach(article => {
+        const languagesTools = article.querySelector('.languages-tools');
+        const tools = Array.from(languagesTools.querySelectorAll('.tool'));
+
+        // verifica se todas as tools filtradas estão presentes no job
+        const hasAllFilteredTools = filters.every(filter => {
+            const filterLowercase = filter.toLowerCase();
+            return tools.some(tool => tool.dataset.tool.toLowerCase() === filterLowercase);
+        });
+
+        // exibe ou oculta o job com base na filtragem
+        if (hasAllFilteredTools) {
+            article.style.display = 'inline-grid'; // exibe o job
+        } else {
+            article.style.display = 'none'; // oculta o job
+        }
+    });
+}
+
+
 
   
