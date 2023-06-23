@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(response => {return response.json()})
         .then(data => {
             createArticle(data)
-            upTool()
+            filterTool()
         })
         .catch(error => {
             // captura e trata erros ocorridos durante a requisição
@@ -63,20 +63,56 @@ function createArticle(data) {
 function showToolsAndLanguages(job) {
     let toolsHtml = '';
     job.languages.forEach((language) => {
-        toolsHtml += `<div class='tool'>${language}</div>`;
+        toolsHtml += `<div class='tool' data-tool='${language.toLowerCase()}'>${language}</div>`;
     });
     job.tools.forEach((tool) => {
-        toolsHtml += `<div class='tool'>${tool}</div>`;
+        toolsHtml += `<div class='tool' data-tool='${tool.toLowerCase()}'>${tool}</div>`;
     });
     return toolsHtml;
 }
 
-function upTool() {
+function filterTool() {
     const tools = document.querySelectorAll('.tool')
     for(tool of tools) {
         tool.addEventListener('click', (e) => {
             e.preventDefault()
-            console.log('tool clicked')
+            createFilterBox()
+            upTools(e)
         })
     }
 }
+
+function createFilterBox() {
+    const existFilter = document.querySelectorAll('.filter')
+    if(existFilter.length === 0) {
+        const divFilter = document.createElement('div')
+        const header = document.querySelector('header')
+        divFilter.classList.add('filter')
+    
+        header.insertAdjacentElement('afterend', divFilter)
+    }
+    return
+}
+
+function upTools(tool) {
+    const filter = document.querySelector('.filter');
+    const toolClicked = tool.target.dataset.tool;
+  
+    // verificar se a ferramenta já existe no filtro
+    const filteredTools = filter.querySelectorAll('.toolFiltered');
+    for (const filteredTool of filteredTools) {
+      if (filteredTool.dataset.check === toolClicked) {
+        // se ela existir, remover
+        filteredTool.remove()
+        return;
+      }
+    }
+  
+    const toolDiv = document.createElement('div');
+    toolDiv.innerHTML = toolClicked;
+    toolDiv.classList.add('toolFiltered');
+    toolDiv.dataset.check = toolClicked;
+  
+    filter.insertAdjacentElement('beforeend', toolDiv);
+}
+  
