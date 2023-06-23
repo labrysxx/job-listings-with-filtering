@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(response => {return response.json()})
         .then(data => {
             createArticle(data)
-            console.log(data)
+            upTool()
         })
         .catch(error => {
             // captura e trata erros ocorridos durante a requisição
@@ -63,10 +63,20 @@ function createArticle(data) {
 function showToolsAndLanguages(job) {
     let toolsHtml = '';
     job.languages.forEach((language) => {
-        toolsHtml += `<div>${language}</div>`;
+        toolsHtml += `<div class='tool'>${language}</div>`;
     });
     job.tools.forEach((tool) => {
-        toolsHtml += `<div>${tool}</div>`;
+        toolsHtml += `<div class='tool'>${tool}</div>`;
     });
     return toolsHtml;
+}
+
+function upTool() {
+    const tools = document.querySelectorAll('.tool')
+    for(tool of tools) {
+        tool.addEventListener('click', (e) => {
+            e.preventDefault()
+            console.log('tool clicked')
+        })
+    }
 }
