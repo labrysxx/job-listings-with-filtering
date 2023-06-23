@@ -155,3 +155,13 @@ main article {
     border-radius: 100%;
     background-color: var(--slate-gray);
 }
+
+.filter {
+    position: absolute;
+    top: 105px;
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 200px; 
+    height: 100px;
+    background-color: white;
+}

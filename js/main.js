@@ -1,4 +1,5 @@
 const main = document.getElementById('content')
+let filters = Array()
 
 window.addEventListener('DOMContentLoaded', () => {
     fetch('./data.json')
@@ -60,6 +61,10 @@ function createArticle(data) {
     })
 }
 
+function updateLocalStorage() {
+    localStorage.setItem('filters', JSON.stringify(filters))
+}
+
 function showToolsAndLanguages(job) {
     let toolsHtml = '';
     job.languages.forEach((language) => {
@@ -97,22 +102,47 @@ function createFilterBox() {
 function upTools(tool) {
     const filter = document.querySelector('.filter');
     const toolClicked = tool.target.dataset.tool;
-  
-    // verificar se a ferramenta já existe no filtro
+
+    // verificar se a tool já existe no filtro
     const filteredTools = filter.querySelectorAll('.toolFiltered');
     for (const filteredTool of filteredTools) {
-      if (filteredTool.dataset.check === toolClicked) {
-        // se ela existir, remover
-        filteredTool.remove()
-        return;
-      }
+        if (filteredTool.dataset.check === toolClicked) {
+            // se ela existir, remover
+            filteredTool.remove();
+
+            // remover a tool do array filters
+            const index = filters.indexOf(toolClicked);
+            if (index !== -1) {
+                filters.splice(index, 1);
+            }
+
+            // atualizar o localStorage
+            updateLocalStorage();
+
+            return;
+        }
     }
-  
+
+    filters.push(toolClicked);
+    updateLocalStorage();
+
     const toolDiv = document.createElement('div');
     toolDiv.innerHTML = toolClicked;
     toolDiv.classList.add('toolFiltered');
     toolDiv.dataset.check = toolClicked;
-  
+
     filter.insertAdjacentElement('beforeend', toolDiv);
+    filteredJobs();
 }
+
+
+function filteredJobs() {
+    const filter = document.querySelector('.filter');
+    const filteredTools = filter.querySelectorAll('.toolFiltered');
+
+    // atualiza o array filters com as tools filtradas
+    filters = Array.from(filteredTools).map(filteredTool => filteredTool.dataset.check);
+    updateLocalStorage()
+}
+
   
