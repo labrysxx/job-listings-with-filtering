@@ -16,7 +16,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 })
 
-
 function createArticle(data) {
     data.forEach((job) => {
         const articleHtml = `
@@ -67,6 +66,10 @@ function updateLocalStorage() {
     localStorage.setItem('filters', JSON.stringify(filters))
 }
 
+function checkLocalStorage() {
+   filters = JSON.parse(localStorage.getItem('filters'))
+}
+
 function showToolsAndLanguages(job) {
     let toolsHtml = '';
     job.languages.forEach((language) => {
@@ -98,7 +101,6 @@ function createFilterBox() {
     
         header.insertAdjacentElement('afterend', divFilter)
     }
-    return
 }
 
 function upTools(tool) {
@@ -139,19 +141,8 @@ function upTools(tool) {
     showFilteredJobs(); // atualizar a exibição dos jobs
 }
 
-
-function filteredJobs() {
-    const filter = document.querySelector('.filter');
-    const filteredTools = filter.querySelectorAll('.toolFiltered');
-
-    // atualiza o array filters com as tools filtradas
-    filters = Array.from(filteredTools).map(filteredTool => filteredTool.dataset.check);
-    updateLocalStorage();
-
-    showFilteredJobs(); // chama a função para exibir os jobs filtrados
-}
-
 function showFilteredJobs() {
+    checkLocalStorage()
     const articles = document.querySelectorAll('article');
 
     articles.forEach(article => {
@@ -171,6 +162,11 @@ function showFilteredJobs() {
             article.style.display = 'none'; // oculta o job
         }
     });
+    deleteTool()
+}
+
+function deleteTool() {
+
 }
 
 

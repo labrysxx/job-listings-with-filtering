@@ -173,3 +173,7 @@ main article {
     background-color: var(--light-aqua);
     padding: 10px;
 }
+
+.deleteButton {
+    padding: 10px 0 10px 10px;
+}
