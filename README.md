@@ -5,16 +5,16 @@ Esta é uma solução para o desafio Lista de empregos com filtragem do Frontend
 
 ## Sumário
 
-- [Visão geral](#overview)
-    - [O desafio](#the-challenge)
-    - [Captura de tela](#screenshot)
+- [Visão geral](#visão-geral)
+    - [O desafio](#o-desafio)
+    - [Captura de tela](#captura-de-tela)
     - [Links](#links)
-- [Meu processo](#my-process)
-    - [Construído com](#built-with)
-    - [O que aprendi](#what-i-learned)
-    - [Desenvolvimento futuro](#continued-development)
-    - [Recursos úteis](#useful-resources)
-- [Autor](#author)
+- [Meu processo](#meu-processo)
+    - [Construído com](#construído-com)
+    - [O que aprendi](#o-que-aprendi)
+    - [Desenvolvimento futuro](#desenvolvimento-futuro)
+    - [Recursos úteis](#recursos-úteis)
+- [Autor](#autor)
 
 ## Visão geral
 
