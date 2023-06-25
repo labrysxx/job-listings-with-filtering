@@ -177,3 +177,19 @@ main article {
 .deleteButton {
     padding: 10px 0 10px 10px;
 }
+
+.toolFiltered::after {
+    content: 'x';
+    background-color: var(--light-teal);
+    height: 100%;
+    padding: 10px;
+    margin-left: 10px;
+    display: none; /* oculta o pseudo-elemento por padrão */
+}
+
+.toolFiltered:hover::after {
+    background-color: var(--dark-grayish-cyan);
+    color: white;
+    cursor: pointer;
+    display: inline-block; /* exibe o pseudo-elemento quando o mouse estiver sobre o elemento */
+}

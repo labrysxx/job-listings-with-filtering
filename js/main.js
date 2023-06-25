@@ -166,7 +166,17 @@ function showFilteredJobs() {
 }
 
 function deleteTool() {
-
+    const toolsFiltered = document.querySelectorAll('.toolFiltered')
+    for(const tool of toolsFiltered) {
+        tool.addEventListener('click', (e) => {
+            e.preventDefault()
+            checkLocalStorage()
+            filters = filters.filter(tool => tool !== e.target.dataset.check)
+            e.target.remove()
+            updateLocalStorage();
+            showFilteredJobs()
+        })
+    }
 }
 
 
