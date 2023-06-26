@@ -56,7 +56,8 @@
     }
 
     .filter {
-        top: 68px;
+        top: 86px;
+        padding: 26px 49px 26px 0px;
     }
 
     .separator-line {

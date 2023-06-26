@@ -134,10 +134,15 @@ function upTools(tool) {
     updateLocalStorage();
 
     const toolDiv = document.createElement('div');
+    const deleteTool = document.createElement('div')
+
+    deleteTool.innerHTML = 'x'
     toolDiv.innerHTML = toolClicked;
     toolDiv.classList.add('toolFiltered');
+    deleteTool.classList.add('deleteBtn')
     toolDiv.dataset.check = toolClicked;
 
+    toolDiv.appendChild(deleteTool)
     filter.insertAdjacentElement('beforeend', toolDiv);
     showFilteredJobs(); // atualizar a exibição dos jobs
 }
@@ -167,13 +172,13 @@ function showFilteredJobs() {
 }
 
 function deleteTool() {
-    const toolsFiltered = document.querySelectorAll('.toolFiltered')
-    for (const tool of toolsFiltered) {
-        tool.addEventListener('click', (e) => {
+    const deleteFilterBtns = document.querySelectorAll('.deleteBtn')
+    for (const deleteBtn of deleteFilterBtns) {
+        deleteBtn.addEventListener('click', (e) => {
             e.preventDefault()
             checkLocalStorage()
-            filters = filters.filter(tool => tool !== e.target.dataset.check)
-            e.target.remove()
+            filters = filters.filter(tool => tool !== e.target.parentNode.dataset.check)
+            e.target.parentNode.remove()
             updateLocalStorage();
             showFilteredJobs()
         })

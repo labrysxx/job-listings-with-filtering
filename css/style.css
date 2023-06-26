@@ -163,33 +163,32 @@ main article {
     top: 105px;
     left: 50%; 
     transform: translateX(-50%); 
-    width: 76%; 
-    height: 100px;
+    width: 70%;
+    height: auto;
     background-color: white;
+    padding: 26px 40px;
+    border-radius: 10px;
 }
 
 .toolFiltered {
+    display: flex;
+    align-items: center;
     margin-left: 16px;
     background-color: var(--light-aqua);
-    padding: 10px;
+    padding: 0 0 0 10px;
+    border-radius: 10px;
 }
 
-.deleteButton {
-    padding: 10px 0 10px 10px;
-}
-
-.toolFiltered::after {
-    content: 'x';
+.deleteBtn {
+    padding: 9px;
     background-color: var(--light-teal);
-    height: 100%;
-    padding: 10px;
-    margin-left: 10px;
-    display: none; /* oculta o pseudo-elemento por padrão */
+    color: white;
+    margin-left: 6px;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
 }
 
-.toolFiltered:hover::after {
+.deleteBtn:hover {
     background-color: var(--dark-grayish-cyan);
-    color: white;
-    cursor: pointer;
-    display: inline-block; /* exibe o pseudo-elemento quando o mouse estiver sobre o elemento */
 }
+
