@@ -54,6 +54,7 @@ function createArticle(data) {
                         <div class="separator"></div>
                         <div class="location">${job.location}</div>
                     </div>
+                    <div class="separator-line"></div>
                     <div class="languages-tools">${showToolsAndLanguages(job)}</div>
                 </header>
             </article>
@@ -167,7 +168,7 @@ function showFilteredJobs() {
 
 function deleteTool() {
     const toolsFiltered = document.querySelectorAll('.toolFiltered')
-    for(const tool of toolsFiltered) {
+    for (const tool of toolsFiltered) {
         tool.addEventListener('click', (e) => {
             e.preventDefault()
             checkLocalStorage()
